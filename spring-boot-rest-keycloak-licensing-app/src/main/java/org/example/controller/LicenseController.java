@@ -3,6 +3,7 @@ package org.example.controller;
 import org.example.model.License;
 import org.example.service.LicenseService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,6 +16,7 @@ public class LicenseController {
   }
 
   @GetMapping("{licenseId}")
+  @PreAuthorize("hasAuthority('ADMIN')")
   public ResponseEntity<License> getLicense(
       @PathVariable("organisationId") Long organisationId,
       @PathVariable("licenseId") Long licenseId)
