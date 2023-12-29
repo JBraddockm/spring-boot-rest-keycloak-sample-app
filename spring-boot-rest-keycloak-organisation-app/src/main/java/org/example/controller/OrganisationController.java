@@ -4,6 +4,7 @@ import org.example.model.Organisation;
 import org.example.service.OrganisationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,6 +17,7 @@ public class OrganisationController {
   }
 
   @GetMapping("{organisationId}")
+  @PreAuthorize("hasAuthority('training-admin')")
   public ResponseEntity<Organisation> getOrganisationById(@PathVariable("organisationId") Long id)
       throws Exception {
     return ResponseEntity.ok(
