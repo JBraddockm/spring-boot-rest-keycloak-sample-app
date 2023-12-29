@@ -1,0 +1,31 @@
+## Used in authorities converter
+oauth2-client-secret: 8Qe8ULarJerGVlFKkD5kz6HBLs87Rpgd
+oauth2-client-id: training
+server:
+    port: 8081
+spring:
+    datasource:
+        password: strongpassword
+        url: jdbc:postgresql://localhost:5432/thamestrust
+        username: postgres
+    jpa:
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                format_sql: true
+        show-sql: false
+    sql:
+        init:
+            mode: always
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    issuer-uri: http://localhost:8442/realms/local-dev
+
+permit-all: >
+    /users/me,
+    /actuator/health/readiness,
+    /actuator/health/liveness
